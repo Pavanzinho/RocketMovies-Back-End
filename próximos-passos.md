@@ -1,0 +1,2 @@
+1-Arrumar a requisição de user_id no movieNotesController, pois a criação da nota está indo com id nulo, já que estou usando params para pegar user_id e ele já foi inserido na requisição por meio do ensureAuthentication.
+2- Arrumar os useEffect de fetchNotes e fetchTags em Home.

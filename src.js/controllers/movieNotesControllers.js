@@ -7,7 +7,7 @@ const AppError=require('../utils/AppError');
  class MovieNotesControllers{
 
      async create(request,response){
-        const {user_id}=request.query;
+        const user_id=request.user.id;
         const {movie_title,movie_description,rating,movie_tags}=request.body;
         
 
@@ -58,8 +58,12 @@ const AppError=require('../utils/AppError');
     }
 
     async index(req,res){
-        const {user_id,movie_title, movie_tags}=req.query;
+        const {movie_title, movie_tags}=req.query;
+        const user_id = req.user.id;
+
+  
         
+       
         let notes;
 
         if(movie_tags){
@@ -72,9 +76,10 @@ const AppError=require('../utils/AppError');
                 "movie_notes.user_id",
             ])
             .where("movie_notes.user_id", user_id)
-            .whereLike("movie_notes.movie_title", `%${title}%`)
+            .whereLike("movie_notes.movie_title", `%${movie_title}%`)
             .whereIn("name",filterTags)
             .innerJoin("movie_notes","movie_notes.id","movie_tags.note_id")
+            .groupBy("notes.id")
             .orderBy("movie_notes.movie_title")
           
         }

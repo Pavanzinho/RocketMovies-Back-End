@@ -1,3 +1,4 @@
+require("dotenv/config")
 require('express-async-errors'); 
 
 const express=require('express');
@@ -5,14 +6,16 @@ const app=express();
 const migrationRun=require("./database/sqlite/migration")
 const routes=require("../src.js/routes")
 const AppError=require("./utils/AppError") 
-
-
+const cors = require("cors")
+const path=require("path")
+const uploadConfig=require("./configs/upload")
 
 migrationRun(); //executando sql e criando tabela users.
 
-
 app.use(express.json()); 
+app.use(cors());
 app.use(routes);
+app.use("/files", express.static(uploadConfig.UPLOADS_FOLDER))
 
 
 //TRATAMENTO DE ERROS
@@ -35,7 +38,9 @@ app.use((error,request,response,next)=>{
 })
 
 
-const PORT=3333;
+const PORT=process.env.PORT || 3333;
+/*o server será iniciado na porta setada na variável de ambiente
+criada no arquivo .env*/
 
 app.listen(PORT, ()=>console.log(`Server is running in ${PORT}`))
 
