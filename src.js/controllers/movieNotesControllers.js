@@ -100,6 +100,7 @@ const AppError=require('../utils/AppError');
                 movie_tags:notesTags
             }
         })
+        console.info(notesWithTags)
         return res.json(notesWithTags)
     }
 }
