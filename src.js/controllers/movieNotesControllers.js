@@ -8,6 +8,7 @@ const AppError=require('../utils/AppError');
 
      async create(request,response){
         const user_id=request.user.id;
+        console.log(user_id)
         const {movie_title,movie_description,rating,movie_tags}=request.body;
         
 

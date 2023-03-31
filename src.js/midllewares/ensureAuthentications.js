@@ -4,6 +4,7 @@ const AppError = require("../utils/AppError")
 
 function ensureAuthentication(request, response, next) {
     const authHeader = request.headers.authorization; //token vai estar nesse destino.
+    console.log(authHeader)
 
     if (!authHeader) {
         throw new AppError("JTW Token não informado ", 401)
