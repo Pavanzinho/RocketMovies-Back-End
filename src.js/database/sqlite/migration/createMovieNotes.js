@@ -4,10 +4,10 @@ const createMovieNotes = `
         movie_title TEXT,
         movie_description TEXT,
         rating INTEGER CHECK (rating >= 1 AND rating <= 5),
-        user_id INTEGER,
+        user_id INTEGER REFERENCES users(id),
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (user_id) REFERENCES users(id)
+       
     );
 `;
 
