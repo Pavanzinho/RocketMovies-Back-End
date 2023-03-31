@@ -29,10 +29,13 @@ const AppError=require('../utils/AppError');
                 user_id,
                 name
             }
-        })                  
+        })              
+        console.info(`inserindo o objeto na tabela links ${tagsInsert.toString()}`)    
         await knex("movie_tags").insert(tagsInsert)
+        console.info("finalizando processo de criaçao de nota")
         
         response.json();
+        console.log("deu bom")
 
     }
 
