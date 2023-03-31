@@ -1,12 +1,13 @@
-const createMovieTags = `
-    CREATE TABLE IF NOT EXISTS movie_tags (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        note_id INTEGER,
-        user_id INTEGER,
-        name TEXT,
-        FOREIGN KEY (note_id) REFERENCES movie_notes(id) ON DELETE CASCADE,
-        FOREIGN KEY (user_id) REFERENCES users(id)
-    );
+
+
+
+const createTags = `
+CREATE TABLE IF NOT EXISTS movie_tags (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  note_id INTEGER REFERENCES movie_notes(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id),
+  name TEXT
+);
 `;
 
-module.exports=createMovieTags;
+module.exports = createTags;
