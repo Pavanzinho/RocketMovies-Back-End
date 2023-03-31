@@ -30,9 +30,9 @@ const AppError=require('../utils/AppError');
                 name
             }
         })              
-        console.info(`inserindo o objeto na tabela links ${tagsInsert.toString()}`)    
+        console.log(`inserindo o objeto na tabela links ${tagsInsert}`)    
         await knex("movie_tags").insert(tagsInsert)
-        console.info("finalizando processo de criaçao de nota")
+        console.log("finalizando processo de criaçao de nota")
         
         response.json();
         console.log("deu bom")
